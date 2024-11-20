@@ -1,0 +1,243 @@
+/* Reset de estilo */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Corpo do layout */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #1d1f27; /* Cor de fundo suave */
+  color: #f1f1f1; /* Texto escuro */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  flex-direction: column;
+}
+
+/* Container principal */
+.container {
+  background-color: #21232e; /* Fundo branco para contraste suave */
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-align: center;
+  align-items: center; /* Centraliza o conteúdo */
+}
+
+/* Título */
+h1 {
+  font-size: 2rem;
+  color: #4bb7ff; /* Azul claro para o título */
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+/* Caixa de transcrição */
+.transcription-container {
+  padding: 20px;
+  background-color: #4bb7ff; /* Caixa de transcrição com fundo suave */
+  border-radius: 10px;
+  color: white;
+  overflow-y: auto;
+  max-height: 250px;
+  text-align: left;
+  font-size: 1rem;
+}
+
+.transcription-result {
+  font-size: 1.2rem;
+  color: #ffffff;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* Estilo de mensagem no chat */
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  overflow-y: auto;
+}
+
+.chat-message {
+  background-color: #eeeeee;
+  color: white;
+  border-radius: 10px;
+  padding: 12px 20px;
+  max-width: 80%;
+  word-wrap: break-word;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.chat-message.user {
+  background-color: #4A90E2; /* Azul claro para as mensagens do usuário */
+  color: white;
+  align-self: flex-end;
+}
+
+.chat-message.system {
+  background-color: #f1f1f1; /* Mensagem do sistema */
+  align-self: flex-start;
+}
+
+/* Botões */
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+button {
+  background-color: #4A90E2;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+button:hover {
+  background-color: #357ABD;
+  transform: scale(1.05);
+}
+
+/* Caixa de entrada para mensagem do usuário */
+.input-container {
+  display: flex;
+  gap: 10px;
+  background-color: #4bb7ff;
+  width: 100%;
+}
+
+.input-container input {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  background-color: #f1f1f1;
+  color: #333;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.input-container input:focus {
+  border-color: #4A90E2; /* Foco na caixa de entrada */
+}
+
+.input-container button {
+  padding: 12px 18px;
+  font-size: 1rem;
+  background-color: #4bb7ff;
+  color: white;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.input-container button:hover {
+  background-color: #357ABD;
+  transform: scale(1.05);
+}
+
+/* Áudio */
+.audio-container {
+  margin-top: 20px;
+  text-align: center;
+}
+
+audio {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+/* Duração do áudio */
+p {
+  font-size: 1rem;
+  color: #888;
+  margin-top: 10px;
+}
+
+/* Upload de arquivo */
+.file-upload {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.file-upload input {
+  font-size: 1rem;
+  padding: 12px;
+  background-color: #f7f7f7;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 100%;
+  max-width: 400px;
+  transition: border-color 0.3s ease;
+}
+
+.file-upload input:hover {
+  border-color: #4A90E2;
+}
+
+/* Informações do arquivo */
+.file-info {
+  margin-top: 10px;
+  font-size: 1rem;
+  color: #333;
+  text-align: left;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .container {
+    width: 90%;
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  button {
+    padding: 10px 18px;
+  }
+
+  audio {
+    max-width: 100%;
+  }
+
+  .file-upload input {
+    max-width: 100%;
+  }
+
+  .input-container input {
+    font-size: 1.2rem;
+  }
+
+  .input-container button {
+    font-size: 1.2rem;
+  }
+}
