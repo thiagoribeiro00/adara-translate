@@ -7,7 +7,7 @@ The application allows users to upload audio files or record audio in real-time,
 ## Technologies and Tools Used
 
 - **Flask**: Python web framework used to build the API.
-- **Whisper**: OpenAI's audio transcription model.
+- **Whisper**: Audio transcription model.
 - **PyTorch**: Machine learning library used to load and run the Whisper model.
 - **React.js**: JavaScript library for building the user interface.
 - **Render**: Hosting platform used to deploy the application.
