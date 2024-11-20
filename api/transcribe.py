@@ -21,11 +21,11 @@ os.makedirs('transcribed_audio', exist_ok=True)
 def transcribe_audio():
     try:
         if 'audio' not in request.files:
-            return jsonify({"message": "Arquivo de áudio não encontrado"}), 400
+            return jsonify({"message": "Audio file not found"}), 400
         
         file = request.files['audio']
         if file.filename == '':
-            return jsonify({"message": "Nenhum arquivo selecionado"}), 400
+            return jsonify({"message": "No files selected"}), 400
         
         audio_path = f"./transcribed_audio/{file.filename}"
         file.save(audio_path)
@@ -34,8 +34,8 @@ def transcribe_audio():
         return jsonify({"transcription": result["text"]})
     
     except Exception as e:
-        print(f"Erro ao transcrever áudio: {str(e)}")
-        return jsonify({"message": f"Erro ao transcrever áudio: {str(e)}"}), 500
+        print(f"Error transcribing audio: {str(e)}")
+        return jsonify({"message": f"Error transcribing audio: {str(e)}"}), 500
 
 if __name__ == '__main__':
     app.run(port=5002, debug=True)

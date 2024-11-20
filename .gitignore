@@ -35,6 +35,8 @@ build/Release
 # Dependency directories
 node_modules/
 venv/
+
+# Ambientes de desenvolvimento
 idea/
 .vscode/
 __pycache__/
@@ -44,8 +46,6 @@ __pycache__/
 htmlcov/
 docs/_build/
 dist/
-venv/
-.venv
 
 # Optional npm cache directory
 .npm
@@ -67,3 +67,8 @@ venv/
 
 # dataconnect generated files
 .dataconnect
+
+# Vercel
+.vercel
+
+# Outros arquivos e diretórios específicos do seu projeto
