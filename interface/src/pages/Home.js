@@ -1,50 +1,47 @@
 import React, { useState, useRef, useEffect } from 'react';
-import axios from 'axios'; // Usando Axios para fazer a requisição ao servidor
+import axios from 'axios';
 import '../App.css';
 
 const Home = () => {
   const [isRecording, setIsRecording] = useState(false);
   const [audioBlob, setAudioBlob] = useState(null);
   const [audioDuration, setAudioDuration] = useState(0);
-  const [transcription, setTranscription] = useState(''); // Estado para a transcrição
-  const [audioFile, setAudioFile] = useState(null);  // Estado para o arquivo carregado
+  const [transcription, setTranscription] = useState(''); 
+  const [audioFile, setAudioFile] = useState(null);  
   const mediaRecorderRef = useRef(null);
   const audioChunksRef = useRef([]);
 
-  // Função para testar se o microfone está disponível
   const testMicrophone = async () => {
     try {
       const devices = await navigator.mediaDevices.enumerateDevices();
       const audioDevices = devices.filter(device => device.kind === 'audioinput');
 
       if (audioDevices.length > 0) {
-        console.log('Microfones disponíveis:', audioDevices);
-        alert(`Microfone detectado: ${audioDevices[0].label || 'Microfone padrão'}`);
+        console.log('Available microphones:', audioDevices);
+        alert(`Microphone detected: ${audioDevices[0].label || 'Standard microphone'}`);
       } else {
-        alert('Nenhum microfone detectado. Verifique se está conectado ou ativado.');
+        alert('No microphone detected. Check if it is connected or activated.');
       }
     } catch (error) {
-      console.error('Erro ao acessar dispositivos de mídia:', error);
-      alert('Erro ao acessar dispositivos de mídia.');
+      console.error('Error accessing media devices:', error);
+      alert('Error accessing media devices.');
     }
   };
 
-  // Chama a função de teste do microfone ao carregar o componente
   useEffect(() => {
     testMicrophone();
   }, []);
 
-  // Função para gravar o áudio
+ // Function to record audio
   const handleRecordStart = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
 
       if (!stream) {
-        alert('Nenhum fluxo de áudio encontrado. Verifique seu microfone.');
+        alert('no audio stream found. Check your microphone.');
         return;
       }
 
-      // Alteração aqui para capturar em formato .webm (mais compatível)
       const mediaRecorder = new MediaRecorder(stream, { mimeType: 'audio/webm' });
       mediaRecorderRef.current = mediaRecorder;
       audioChunksRef.current = [];
@@ -60,51 +57,47 @@ const Home = () => {
         setAudioBlob(audioBlob);
 
         if (audioBlob.size === 0) {
-          alert('Nenhum som foi capturado. Verifique seu microfone.');
+          alert('No sound was captured. Check your microphone.');
           return;
         }
 
         const audioURL = URL.createObjectURL(audioBlob);
         const audio = new Audio(audioURL);
         audio.onloadedmetadata = () => {
-          setAudioDuration(audio.duration.toFixed(2)); // Definir a duração do áudio
+          setAudioDuration(audio.duration.toFixed(2));
         };
 
-        setTranscription('Simulação de transcrição...');
-        uploadAudioForTranscription(audioBlob); // Enviar o áudio para transcrição
+        setTranscription('Transcription simulation...');
+        uploadAudioForTranscription(audioBlob);
       };
 
       mediaRecorder.start();
       setIsRecording(true);
-      console.log('Gravação iniciada.');
+      console.log('Recording started.');
     } catch (error) {
-      console.error('Erro ao acessar o microfone:', error);
-      alert('Erro ao acessar o microfone. Verifique as permissões do navegador.');
+      console.error('Error accessing microphone:', error);
+      alert('Error accessing the microphone. Check browser permissions.');
     }
   };
 
-  // Função para parar a gravação de áudio
   const handleRecordStop = () => {
     if (mediaRecorderRef.current) {
       mediaRecorderRef.current.stop();
       setIsRecording(false);
-      console.log('Gravação finalizada.');
+      console.log('Recording finished.');
     }
   };
 
-  // Função para carregar um arquivo de áudio
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file) {
       setAudioFile(file);
       const fileURL = URL.createObjectURL(file);
       setTranscription('Loading File ...');
-      // Enviar o arquivo carregado para transcrição
       uploadAudioForTranscription(file);
     }
   };
 
-  // Função para enviar o arquivo de áudio para transcrição
   const uploadAudioForTranscription = async (file) => {
     const formData = new FormData();
     formData.append('audio', file);
@@ -116,10 +109,10 @@ const Home = () => {
         },
       });
 
-      setTranscription(response.data.transcription); // Exibir a transcrição recebida
+      setTranscription(response.data.transcription); 
     } catch (error) {
-      console.error('Erro ao transcrever o áudio:', error);
-      setTranscription('Erro ao transcrever áudio.');
+      console.error('Error transcribing audio:', error);
+      setTranscription('Error transcribing audio.');
     }
   };
 
