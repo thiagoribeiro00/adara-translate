@@ -1,5 +1,3 @@
-# Audio Transcription with Whisper, Flask, and React.js
-
 ## Introduction
 
 This project is a web application that uses a speech-to-text LLM model to transcribe audio files and generated audio in real-time. The application is built using the Flask framework for Python on the backend and React.js on the frontend, and is designed to be scalable, easy to use, and robust.
