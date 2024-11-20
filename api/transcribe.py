@@ -13,7 +13,6 @@ CORS(app)
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-# Carregue o modelo apenas uma vez
 model = whisper.load_model("tiny", device=device, download_root="./models")
 
 os.makedirs('transcribed_audio', exist_ok=True)
